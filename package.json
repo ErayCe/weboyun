@@ -1,0 +1,12 @@
+{
+  "name": "xox-game",
+  "version": "1.0.0",
+  "description": "Bir çok oyunculu XOX ve Pong oyunu",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "dependencies": {
+    "ws": "^8.13.0"
+  }
+}

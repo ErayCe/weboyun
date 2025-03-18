@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pong Oyunu</title>
+    <link rel="stylesheet" href="pong.css">
+</head>
+<body>
+    <h1>Pong Oyunu</h1>
+    <canvas id="gameCanvas" width="800" height="400"></canvas>
+    <p id="status">Bağlanıyor...</p>
+    <button id="restartBtn" style="display: none;" onclick="location.reload()">Yeniden Başla</button>
+    <script src="pong.js"></script>
+    <script>
+        socket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            if (data.type === 'win' || data.type === 'end') {
+                document.getElementById('restartBtn').style.display = 'block';
+            }
+        };
+    </script>
+</body>
+</html>
