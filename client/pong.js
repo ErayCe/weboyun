@@ -5,7 +5,7 @@ let playerId = null;
 let role = null;
 let roomId = null;
 
-const socket = new WebSocket('ws://localhost:8080'); // Yerel test için, globalde değiştireceğiz
+const socket = new WebSocket('ws://direct-klara-oyunodalari-a7f93ea6.koyeb.app/'); // Yerel test için, globalde değiştireceğiz
 
 socket.onopen = () => {
     socket.send(JSON.stringify({ type: 'join', gameMode: 'pong' }));
