@@ -1,8 +1,7 @@
 const WebSocket = require('ws');
 const server = new WebSocket.Server({ port: process.env.PORT || 8080 });
 
-// Oyun odaları
-const rooms = new Map();
+let rooms = new Map();
 
 function createRoom() {
     const roomId = Math.random().toString(36).substring(2, 8);
@@ -102,7 +101,7 @@ function updatePong(roomId) {
     if (state.ball.x < 20 && state.ball.y > state.paddle1Y && state.ball.y < state.paddle1Y + 100) {
         let collidePoint = state.ball.y - (state.paddle1Y + 50);
         let angle = (collidePoint / 50) * Math.PI / 3;
-        state.ball.dx = 6 * Math.cos(angle); // Hızı artırdık
+        state.ball.dx = 6 * Math.cos(angle);
         state.ball.dy = 6 * Math.sin(angle);
     }
     if (state.ball.x > 780 && state.ball.y > state.paddle2Y && state.ball.y < state.paddle2Y + 100) {
@@ -113,7 +112,7 @@ function updatePong(roomId) {
     }
 
     if (state.ball.y + state.ball.radius > 400 || state.ball.y - state.ball.radius < 0) {
-        state.ball.dy = -state.ball.dy * 1.1; // Hafif hız artışı
+        state.ball.dy = -state.ball.dy * 1.1;
     }
 
     if (state.ball.x < 0) {
@@ -143,4 +142,4 @@ setInterval(() => {
     });
 }, 1000 / 60);
 
-console.log('Sunucu ' + (process.env.PORT || 8080) + ' portunda çalışıyor...');
+console.log(`Sunucu ${process.env.PORT || 8080} portunda çalışıyor...`);
